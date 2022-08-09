@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  mariadb:
+    container_name: fd-microservice_user
+    image: mariadb:10.7
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=fd_mariadb_root_password
+      - MYSQL_PASSWORD=fd_mariadb_password
+      - MYSQL_USER=fd_mariadb_user
+      - MYSQL_DATABASE=fd_microservice_user
+    networks:
+      - fd-microservice-network
+
+networks:
+  fd-microservice-network:
+    driver: bridge
